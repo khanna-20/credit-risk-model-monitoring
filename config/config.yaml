@@ -1,0 +1,110 @@
+# ---------------------------------------------------------------------------
+# Credit Risk Modelling & Model Monitoring Pipeline - configuration
+# Every threshold used for an alert lives in this file so it can be reviewed
+# and changed without touching code.
+# ---------------------------------------------------------------------------
+
+project:
+  random_seed: 42
+
+data:
+  # Horizon choice: the "5th year" file = financial ratios from the 5th year of
+  # the forecasting period, label = bankruptcy status after 1 year.
+  # A 1-year horizon matches the 12-month PD convention used in bank credit models.
+  raw_path: data/raw/5year.arff
+  horizon_file: 5year.arff
+  uci_zip_url: https://archive.ics.uci.edu/static/public/365/polish+companies+bankruptcy+data.zip
+  expected_rows: 5910
+  expected_defaults: 410
+  target: default_flag
+
+split:
+  # Stratified three-way split, done once, after removing exact duplicates.
+  #   development (train) 60% | test 20% | monitoring pool 20%
+  test_share: 0.20
+  monitoring_pool_share: 0.20
+
+features:
+  # X24 is documented as "gross profit (in 3 years) / total assets". Its wording is
+  # ambiguous and may include information from after the observation date, so it is
+  # excluded as a leakage precaution.
+  excluded: [X24]
+  # Columns whose missing rate in the TRAINING data exceeds this are dropped.
+  max_missing_rate: 0.50
+
+scorecard:            # champion: WoE logistic-regression scorecard
+  n_bins: 5           # quantile bins per feature (missing values get their own bin)
+  min_iv: 0.02        # minimum Information Value to keep a feature
+  max_corr: 0.70      # max |correlation| between selected WoE features
+  max_features: 12
+  C_grid: [0.01, 0.1, 1.0, 10.0]
+
+challenger:           # benchmark: histogram gradient boosting (handles NaN natively)
+  learning_rate: [0.05, 0.1]
+  max_depth: [3, 5]
+  max_iter: 200
+  min_samples_leaf: 20
+
+# Sensitivity check: refit the champion without these features and compare test AUC.
+# X21 (sales growth) has a very high IV, much of it from its missing values.
+sensitivity_exclude: [X21]
+
+champion: scorecard_lr   # model that is monitored. Rationale in the development report.
+class_weight: null        # null = unweighted. The imbalance analysis shows why.
+cv_folds: 5
+bootstrap_reps: 1000
+
+threshold:
+  # Illustrative cost assumptions for an early-warning flag (NOT bank figures):
+  # missing a defaulter (false negative) is assumed 10x as costly as reviewing a
+  # healthy firm unnecessarily (false positive).
+  cost_false_negative: 10
+  cost_false_positive: 1
+
+rating_scale:
+  # Illustrative 7-grade master scale: grade -> upper PD bound (exclusive).
+  - {grade: G1, upper_pd: 0.005}
+  - {grade: G2, upper_pd: 0.01}
+  - {grade: G3, upper_pd: 0.02}
+  - {grade: G4, upper_pd: 0.05}
+  - {grade: G5, upper_pd: 0.10}
+  - {grade: G6, upper_pd: 0.20}
+  - {grade: G7, upper_pd: 1.01}
+
+monitoring:
+  batch_dir: data/simulated
+  n_score_bins: 10
+  # Also tracked for drift (information only, not part of the model): X29 = log(total assets), firm size
+  extra_features: [X29]
+  psi:                    # score stability (PSI) and feature stability (CSI)
+    amber: 0.10
+    red: 0.25
+  ks_alpha: 0.01          # KS test p-value below this = statistically detectable shift (info)
+  missing_rate_increase:  # absolute increase vs development sample
+    amber: 0.05
+    red: 0.15
+  default_rate_ratio:     # observed batch default rate / development default rate
+    amber: 1.5
+    red: 2.0
+  calibration_pvalue:     # two-sided binomial test, observed defaults vs mean predicted PD
+    amber: 0.05
+    red: 0.01
+  gini_relative_drop:     # (benchmark Gini - batch Gini) / benchmark Gini
+    amber: 0.10
+    red: 0.20
+  min_defaults_for_performance: 15
+
+simulation:
+  # ALL batches below are SIMULATED by resampling the held-out monitoring pool.
+  # They are NOT real bank or production observations.
+  batch_size: 600
+  start_period: "2027-01-01"
+  batches:
+    - {batch_id: SIM_M01, scenario: baseline}
+    - {batch_id: SIM_M02, scenario: baseline}
+    - {batch_id: SIM_M03, scenario: population_shift_small_firms}
+    - {batch_id: SIM_M04, scenario: default_rate_increase}
+    - {batch_id: SIM_M05, scenario: missing_data_spike}
+    - {batch_id: SIM_M06, scenario: relationship_break}
+    - {batch_id: SIM_M07, scenario: baseline}
+    - {batch_id: SIM_M08, scenario: baseline_labels_pending}

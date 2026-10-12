@@ -1,0 +1,63 @@
+{
+  "champion": "scorecard_lr",
+  "challenger": "challenger_gbm",
+  "champion_features": [
+    "X21",
+    "X27",
+    "X39",
+    "X26",
+    "X25",
+    "X41",
+    "X55",
+    "X46",
+    "X6",
+    "X38",
+    "X54",
+    "X58"
+  ],
+  "champion_params": "0.1",
+  "excluded_features": [
+    "X24"
+  ],
+  "dropped_high_missing": [],
+  "thresholds": {
+    "cost_optimal": 0.12,
+    "f1_optimal": 0.37
+  },
+  "benchmark_gini": 0.7948281921345892,
+  "benchmark_auc": 0.8974140960672946,
+  "reference_default_rate": 0.0698005698005698,
+  "reference_missing_rates": {
+    "X21": 0.017948717948717947,
+    "X27": 0.0680911680911681,
+    "X39": 0.0,
+    "X26": 0.002564102564102564,
+    "X25": 0.0002849002849002849,
+    "X41": 0.011680911680911682,
+    "X55": 0.0,
+    "X46": 0.002849002849002849,
+    "X6": 0.0002849002849002849,
+    "X38": 0.0002849002849002849,
+    "X54": 0.017948717948717947,
+    "X58": 0.0
+  },
+  "data_file_sha256": "cb3f6f250ac46bd8d18e9a222f489fe8ee3e396fcec18959f5a0ef8e8169b2fc",
+  "clean_info": {
+    "rows_in": 5910,
+    "exact_duplicates_removed": 60,
+    "conflicting_rows_removed": 0,
+    "rows_out": 5850
+  },
+  "rows": {
+    "train": 3510,
+    "test": 1170,
+    "monitoring_pool": 1170
+  },
+  "random_seed": 42,
+  "versions": {
+    "python": "3.11.15",
+    "sklearn": "1.5.2",
+    "pandas": "2.2.3",
+    "numpy": "2.1.3"
+  }
+}

@@ -1,0 +1,11 @@
+alert_id,batch_id,period_start,scenario,is_simulated,severity,component,metric,value,detail,recommended_action
+ALERT_001,SIM_M03,2027-03-01,population_shift_small_firms,True,AMBER,feature_stability,max_feature_csi,0.2024724376095682,features: X55,Check the feature against its source system; confirm whether the shift is genuine or a data/mapping change.
+ALERT_002,SIM_M04,2027-04-01,default_rate_increase,True,RED,default_rate,default_rate_ratio,2.005714285714286,,"Confirm the outcome data; if the shift persists for 2+ periods, assess recalibration."
+ALERT_003,SIM_M04,2027-04-01,default_rate_increase,True,RED,calibration,calibration_pvalue,0.003708954769895169,,Predicted PDs do not match observed defaults: assess recalibration with the model owner.
+ALERT_004,SIM_M05,2027-05-01,missing_data_spike,True,AMBER,score_stability,score_psi,0.155656556837792,,Review which features moved (CSI) and confirm with the business whether the portfolio mix genuinely changed.
+ALERT_005,SIM_M05,2027-05-01,missing_data_spike,True,RED,feature_stability,max_feature_csi,0.711136156804755,features: X27,Check the feature against its source system; confirm whether the shift is genuine or a data/mapping change.
+ALERT_006,SIM_M05,2027-05-01,missing_data_spike,True,RED,data_quality,max_missing_increase,0.31357549857549855,features: X27,Raise a data incident with the source owner; treat scores for affected firms with caution.
+ALERT_007,SIM_M05,2027-05-01,missing_data_spike,True,RED,calibration,calibration_pvalue,0.004644192557087489,,Predicted PDs do not match observed defaults: assess recalibration with the model owner.
+ALERT_008,SIM_M06,2027-06-01,relationship_break,True,AMBER,score_stability,score_psi,0.1237749088136586,,Review which features moved (CSI) and confirm with the business whether the portfolio mix genuinely changed.
+ALERT_009,SIM_M06,2027-06-01,relationship_break,True,AMBER,calibration,calibration_pvalue,0.018216032974056436,,Predicted PDs do not match observed defaults: assess recalibration with the model owner.
+ALERT_010,SIM_M06,2027-06-01,relationship_break,True,RED,performance,gini_relative_drop,0.7035852409035419,,Escalate to the model owner: root-cause analysis and consider redevelopment or the challenger.

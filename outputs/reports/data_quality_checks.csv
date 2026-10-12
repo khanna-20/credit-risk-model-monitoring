@@ -1,0 +1,15 @@
+check,status,value,detail
+schema_required_columns,PASS,0,X1..X64 and target present
+schema_numeric_features,PASS,0,all 64 features numeric
+target_binary,PASS,"[0, 1]",target must be 0/1 with no missing values
+row_count,PASS,5910,expected 5910 (UCI documentation)
+default_count,PASS,410,expected 410 (UCI documentation)
+default_rate,PASS,0.0694,share of bankrupt firms; informs class-imbalance handling
+exact_duplicate_rows,WARN,60,removed before splitting so copies cannot sit in both train and test
+duplicates_with_conflicting_labels,PASS,0,identical features but different labels (dropped entirely if present)
+infinite_values,PASS,0,inf values are converted to missing
+rows_all_features_missing,PASS,0,rows with no usable feature values
+high_missing_columns,PASS,0,"no column above 50% missing (max 43.1%, X37)"
+rows_with_any_missing,PASS,0.4871,missing values are kept and handled inside the model pipelines
+constant_columns,PASS,0,[]
+extreme_outlier_cells,WARN,397,"cells far outside the 1%-99% range; models use quantile bins / trees, which are robust to them"

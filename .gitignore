@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.venv/
+venv/
+env/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated artefacts that are rebuilt by `python -m creditrisk all`
+outputs/model/*.joblib
+data/simulated/*.csv
+data/raw/*.zip
+
+# Keep the committed raw data file (CC BY 4.0, see DATA_SOURCE.md)
+!data/raw/5year.arff

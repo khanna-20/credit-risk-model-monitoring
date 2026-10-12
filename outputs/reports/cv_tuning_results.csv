@@ -1,0 +1,9 @@
+model,params,cv_auc_mean,cv_auc_std,selected
+scorecard_lr,{'lr__C': 0.01},0.913682532737444,0.018439576694319393,False
+scorecard_lr,{'lr__C': 0.1},0.9144326030565365,0.01785534182563097,True
+scorecard_lr,{'lr__C': 1.0},0.9134825139856861,0.01801687527575908,False
+scorecard_lr,{'lr__C': 10.0},0.9134575116417162,0.018049889910089965,False
+challenger_gbm,"{'gbm__learning_rate': 0.05, 'gbm__max_depth': 3}",0.9383004656686567,0.01932742844693244,False
+challenger_gbm,"{'gbm__learning_rate': 0.05, 'gbm__max_depth': 5}",0.947351314185705,0.01919382453892174,True
+challenger_gbm,"{'gbm__learning_rate': 0.1, 'gbm__max_depth': 3}",0.9436759696221522,0.015893329001893206,False
+challenger_gbm,"{'gbm__learning_rate': 0.1, 'gbm__max_depth': 5}",0.94587617589149,0.019897092873774724,False

@@ -1,0 +1,64 @@
+feature,iv,description,selected
+X21,2.3370632939962337,sales (n) / sales (n-1),True
+X27,1.6018105389121224,profit on operating activities / financial expenses,True
+X39,1.2419860791921453,profit on sales / sales,True
+X26,1.2117520810998057,(net profit + depreciation) / TL,True
+X35,1.2020855278703837,profit on sales / TA,False
+X22,1.1767756087052181,profit on operating activities / TA,False
+X16,1.1766576819286678,(gross profit + depreciation) / TL,False
+X42,1.1671099030407166,profit on operating activities / sales,False
+X13,1.1460306805221856,(gross profit + depreciation) / sales,False
+X1,1.0768008990408133,net profit / TA,False
+X23,1.058552075615409,net profit / sales,False
+X31,1.049700608466094,(gross profit + interest) / sales,False
+X19,1.0460048852592734,gross profit / sales,False
+X12,1.0403790837507787,gross profit / ST liabilities,False
+X7,1.0367232824171533,EBIT / TA,False
+X18,1.0367232824171533,gross profit / TA,False
+X14,1.0367232824171533,(gross profit + interest) / TA,False
+X25,1.03624408393276,(equity - share capital) / TA,True
+X45,1.0174660579458026,net profit / inventory,False
+X15,1.0065011078072963,(TL x 365) / (gross profit + depreciation),False
+X11,0.994611530241515,(gross profit + extraordinary items + financial expenses) / TA,False
+X41,0.9438477518153784,TL / ((profit on operating activities + depreciation) x 12/365),True
+X55,0.9225980736379515,working capital,True
+X46,0.7816473434586526,(current assets - inventory) / ST liabilities,True
+X6,0.7721988970295006,retained earnings / TA,True
+X56,0.7471166601719208,(sales - cost of products sold) / sales,False
+X38,0.6972662257265593,constant capital / TA,True
+X54,0.6806004392894073,constant capital / fixed assets,True
+X58,0.6580033566088115,total costs / total sales,True
+X2,0.6530362179237732,TL / TA,False
+X48,0.6509592213883105,EBITDA / TA,False
+X17,0.6416851764237727,TA / TL,False
+X4,0.6406585766249637,current assets / ST liabilities,False
+X8,0.6370291679021781,book value of equity / TL,False
+X53,0.6147989037206395,equity / fixed assets,False
+X57,0.6147981814756489,(current assets - inventory - ST liabilities) / (sales - gross profit - depreciation),False
+X10,0.6119543734052337,equity / TA,False
+X51,0.6070933113501347,ST liabilities / TA,False
+X28,0.5869268414760845,working capital / fixed assets,False
+X3,0.5750667739551246,working capital / TA,False
+X49,0.5528123820612985,EBITDA / sales,False
+X62,0.4967353536811806,(ST liabilities x 365) / sales,False
+X63,0.4959747363559571,sales / ST liabilities,False
+X50,0.49298983133153623,current assets / TL,False
+X5,0.4897796434190797,(cash + ST securities + receivables - ST liabilities) / (opex - depreciation) x 365,False
+X40,0.40623123239701736,(current assets - inventory - receivables) / ST liabilities,False
+X30,0.38414591567949763,(TL - cash) / sales,False
+X32,0.3594106041350091,(current liabilities x 365) / cost of products sold,False
+X9,0.34891188972769976,sales / TA,False
+X29,0.33694106532127094,log(TA),False
+X33,0.29327688458255863,operating expenses / ST liabilities,False
+X52,0.2919263744640426,(ST liabilities x 365) / cost of products sold,False
+X43,0.20149053831463878,rotation receivables + inventory turnover in days,False
+X59,0.18904413030475653,LT liabilities / equity,False
+X61,0.16667013815490123,sales / receivables,False
+X44,0.15227498023182298,(receivables x 365) / sales,False
+X34,0.12550949309697285,operating expenses / TL,False
+X36,0.12105362511711297,total sales / TA,False
+X47,0.1151666892435821,(inventory x 365) / cost of products sold,False
+X20,0.09575053927329215,(inventory x 365) / sales,False
+X60,0.09263111090007131,sales / inventory,False
+X64,0.04199429420404546,sales / fixed assets,False
+X37,0.03142510942144293,(current assets - inventories) / LT liabilities,False
